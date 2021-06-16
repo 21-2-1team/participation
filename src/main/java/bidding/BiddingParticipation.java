@@ -19,6 +19,7 @@ public class BiddingParticipation {
     private Integer offerPrice;
     private String offerContents;
     private Boolean feePaymentFlag;
+    private String phoneNumber;
 
     @PostUpdate
     public void onPostUpdate(){
@@ -103,7 +104,13 @@ public class BiddingParticipation {
         this.feePaymentFlag = feePaymentFlag;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
 
 }

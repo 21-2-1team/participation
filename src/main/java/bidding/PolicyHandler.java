@@ -17,9 +17,11 @@ public class PolicyHandler{
 
         System.out.println("\n\n##### listener CancelBiddingParticipation : " + noticeCanceled.toJson() + "\n\n");
 
-        // Sample Logic //
-        BiddingParticipation biddingParticipation = new BiddingParticipation();
-        biddingParticipationRepository.save(biddingParticipation);
+        if(noticeCanceled.isMe()){
+            BiddingParticipation biddingParticipation = biddingParticipationRepository.findByNoticeNo(noticeCanceled.getNoticeNo());
+            
+            biddingParticipationRepository.delete(biddingParticipation);
+        }
             
     }
     @StreamListener(KafkaProcessor.INPUT)
@@ -28,11 +30,13 @@ public class PolicyHandler{
         if(!noticeRegistered.validate()) return;
 
         System.out.println("\n\n##### listener RecieveBiddingNotice : " + noticeRegistered.toJson() + "\n\n");
+ 
+        if(noticeRegistered.isMe()){
+            BiddingParticipation biddingParticipation = new BiddingParticipation();
+            biddingParticipation.setNoticeNo(noticeRegistered.getNoticeNo());
 
-        // Sample Logic //
-        BiddingParticipation biddingParticipation = new BiddingParticipation();
-        biddingParticipationRepository.save(biddingParticipation);
-            
+            biddingParticipationRepository.save(biddingParticipation);
+        }
     }
 
 

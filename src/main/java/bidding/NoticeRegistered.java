@@ -13,8 +13,7 @@ public class NoticeRegistered extends AbstractEvent {
     private String demandOrgNm;
     private String bizInfo;
     private String qualifications;
-    private String succBidderNm;
-    
+
     public Long getId() {
         return id;
     }
@@ -63,13 +62,6 @@ public class NoticeRegistered extends AbstractEvent {
     public void setQualifications(String qualifications) {
         this.qualifications = qualifications;
     }
-    public String getSuccBidderNm() {
-        return succBidderNm;
-    }
-    public void setSuccBidderNm(String succBidderNm) {
-        this.succBidderNm = succBidderNm;
-    }
-
     
 }
 
